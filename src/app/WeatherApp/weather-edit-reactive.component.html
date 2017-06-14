@@ -1,0 +1,96 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+
+    <div class="panel-body" *ngIf="weather">
+        <form class="form-horizontal"
+              novalidate
+              [formGroup]="editForm"
+              (ngSubmit)="saveweather()">
+            <fieldset>
+                <div class="form-group" 
+                     [ngClass]="{'has-error': formError.title }">
+                    <label class="col-md-2 control-label" for="inputweatherTitle">weather Title</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="inputweatherTitle" 
+                                type="text" 
+                                placeholder="Title (required)" 
+                                formControlName="title" />
+                        <span class="help-block" *ngIf="formError.title">
+                                {{formError.title}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="{'has-error': formError.developers }">
+                    <label class="col-md-2 control-label" for="inputdevelopers">Developers</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="inputdevelopers" 
+                                type="text" 
+                                placeholder="developers (required)" 
+                                formControlName="developers" />
+                        <span class="help-block" *ngIf="formError.developers">
+                                {{formError.developers}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="{'has-error': formError.starRating}">
+                    <label class="col-md-2 control-label" for="inputStarRating">Star Rating (1-5)</label>
+
+                    <div class="col-md-8">
+                        <input class="form-control" 
+                                id="inputStarRating" 
+                                type="text" 
+                                placeholder="Rating" 
+                                formControlName="starRating" />
+                        <span class="help-block" *ngIf="formError.starRating">
+                                {{formError.starRating}}
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="{'has-error': formError.description}">
+                    <label class="col-md-2 control-label" for="inputweatherDescription">Description</label>
+
+                    <div class="col-md-8">
+                        <textarea class="form-control" 
+                                id="inputweatherDescription" 
+                                placeholder="Description"
+                                rows=3
+                                formControlName="description"></textarea>
+                        <span class="help-block" *ngIf="formError.description">
+                                {{ formError.description}}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    style="width:80px;margin-right:10px"
+                                    [disabled]='!editForm.valid'>
+                                Save
+                            </button>
+                        </span>
+                        <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               [routerLink]="['/weathers']">
+                                Cancel
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
